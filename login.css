@@ -1,0 +1,75 @@
+body {
+    background-image: url('https://tijucaverdeofc.000webhostapp.com/imagens/backgroundlogin.png');
+    background-repeat: no-repeat;
+    background-size: 100% 140%;
+}
+
+h1 {
+    font-family: Arial;
+    margin-top: 7%;
+    text-align: center;
+    color: #B5CDA3;
+}
+
+h3 {
+    font-family: Arial;
+    margin-right: 67%;
+}
+
+img {
+    width: 35%;
+    height: 35%;
+}
+
+form {
+    background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input[type=text] {
+    background-color: #eee;
+	border: none;
+	border-radius: 25px;
+	padding: 12px 15px 15px;
+	width: 80%;
+	padding: 14px 20px;
+}
+
+input[type=password] {
+    background-color: #eee;
+	border: none;
+	border-radius: 25px;
+	padding: 12px 15px 15px;
+	width: 80%;
+	padding: 14px 20px;
+}
+
+input[type=submit] {
+  width: 80%;
+  background-color: #14279B;
+  color: white;
+  padding: 14px 20px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.container {
+    background-color: white;
+    border-radius: 25px;
+    width: 40%;
+    height: 80%;
+    margin-left: 5%;
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+	margin-top: 5%;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

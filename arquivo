@@ -1,0 +1,112 @@
+<?php
+
+$erroNome = "";
+$erroEmail = "";
+$erroSenha = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //VERIFICAR SE ESTA VAZIO O POST NOME
+    if (empty($_POST['nome'])){
+        $erroNome = "Por favor, preencha um nome";
+    }else{
+        //PEGAR O VALOR VINDO DO POST E LIMPA
+        $nome = limpaPost( $_POST['nome']);
+        //VERIFICAR SE TEM SOMENTE LETRAS
+        if (!preg_match("/^[a-zA-Z-' ])*$/", $nome)){
+            $erroNome = "Apenas aceitamos letras e espaços em brancos";
+        }
+    }
+    //VERIFICAR SE ESTA VAZIO O POST EMAIL
+    if (empty($_POST['email'])){
+        $erroEmail = "Por favor, informe um e-mail";
+    }else{
+        //PEGAR O VALOR VINDO DO POST E LIMPA
+       $email = limpaPost( $_POST['email']);
+       if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+           $erroEmail = "E-mail inválido";
+       }
+    }
+     //VERIFICAR SE ESTA VAZIO O POST SENHA
+     if (empty($_POST['senha'])){
+        $erroSenha = "Por favor, informe uma senha";
+    }else{
+        //PEGAR O VALOR VINDO DO POST E LIMPA
+       $senha = limpaPost($_POST['senha']);
+       if(strlen($senha) <6){
+           $erroEmail = "A senha precisa ter no mínimo 6 dígitos!";
+       }
+    }
+}
+
+function limpaPost($valor) {
+  $valor = trim($valor);
+  $valor = stripslashes($valor);
+  $valor= htmlspecialchars($valor);
+  return $valor;
+}
+?>
+
+<!doctype html>
+<html lang="pt-br">
+  <head>
+  	<title>Tijuca Verde | Cadastro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="/imagens/favicon.png" style="width=10px; height:5px;" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/form2.css">
+<style>
+body {
+background: #9053c7;
+  background: -webkit-linear-gradient(-135deg, #002424, #004848, #031420);
+  background: -o-linear-gradient(-135deg, #002424, #004848, #031420);
+  background: -moz-linear-gradient(-135deg, #002424, #004848, #031420);
+  background: linear-gradient(-135deg, #002424, #004848, #031420);
+  
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+</style>
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="img" style="background-image: url(/imagens/logo.png);">
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="d-flex">
+			      		
+								
+				</div>
+			<form  method="post">
+			<h3 class ="text-center">CADASTRE-SE NO<br>TIJUCA VERDE</h3>
+			
+			<input type="text"<?php if(!empty($erroNome)){echo "class='invalido'";}?> name="nome" placeholder="Seu nome..." >
+			<br><span class="erro"><?php echo $erroNome; ?></span>
+			
+			<input type="email"<?php if(!empty($erroEmail)){echo "class='invalido'";}?> name="email" placeholder="Seu e-mail..."title ="Insira um email válido" >
+			<br><span class="erro"><?php echo $erroEmail; ?></span>
+			
+			<input type="password"<?php if(!empty($erroSenha)){echo "class='invalido'";}?> name="senha" placeholder="Sua senha..." >
+			<br><span class="erro"><?php echo $erroSenha; ?></span>
+			
+		    <input type="submit" name="acesso" value ="Enviar">
+						</form>
+		           <p><a class ="text-center" href="/login.html">Iniciar Sessão</a></p>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		 </div>
+	</section>
+	</body>
+</html>
+
